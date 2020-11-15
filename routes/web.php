@@ -19,12 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'CompanyController@index')->name('home');
-Route::post('/submitCompany', 'CompanyController@store')->name('company.submit');
-Route::delete('/deleteCompany/{id}', 'CompanyController@destroy');
-Route::post('/updateCompany/{id}', 'CompanyController@update');
+Route::get('/home', 'CompanyController@index')->name('home')->middleware('auth');
+Route::post('/submitCompany', 'CompanyController@store')->name('company.submit')->middleware('auth');
+Route::delete('/deleteCompany/{id}', 'CompanyController@destroy')->middleware('auth');
+Route::post('/updateCompany/{id}', 'CompanyController@update')->middleware('auth');
 
-Route::get('/employees', 'EmployeeController@index')->name('employee');
-Route::post('/employeeSubmit', 'EmployeeController@store')->name('employee.submit');
-Route::delete('/deleteEmployee/{id}', 'EmployeeController@destroy');
-Route::post('/updateEmployee/{id}', 'EmployeeController@update');
+Route::get('/employees', 'EmployeeController@index')->name('employee')->middleware('auth');
+Route::post('/employeeSubmit', 'EmployeeController@store')->name('employee.submit')->middleware('auth');
+Route::delete('/deleteEmployee/{id}', 'EmployeeController@destroy')->middleware('auth');
+Route::post('/updateEmployee/{id}', 'EmployeeController@update')->middleware('auth');
